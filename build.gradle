@@ -12,9 +12,9 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.0"              // replace with the version of your mod that you have in your main mod file
-group = "com.yourname.modid" // replace with your package name see http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"   // this will be the name of the .jar it can be whatever you like
+version = "0.0.1-beta"              // replace with the version of your mod that you have in your main mod file
+group = "com.eparon.nebula" // replace with your package name see http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "nebula"   // this will be the name of the .jar it can be whatever you like
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

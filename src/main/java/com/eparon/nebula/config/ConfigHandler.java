@@ -1,4 +1,4 @@
-package com.example.examplemod.config;
+package com.eparon.nebula.config;
 
 import net.minecraftforge.common.config.Configuration;
 
