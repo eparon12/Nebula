@@ -26,24 +26,37 @@ public class mineWoodMacro {
     public static void WoodMacroMain() {
         final Minecraft mc = Minecraft.getMinecraft();
         do{
-            /*
-                class Main {
-    public static void main(String[] args) {
-        int[] coords = {0, 0, 0};
+            //int seatchedBlocksCounterTarget = Math.pow(searchedBlocksCounterIncrement, 2) - Math.pow(searchedBlocksCounterIncrement - 2, 2);
+            for(int i = 1; i <= searchedBlocksCounterTarget; i++) {
+                for(int j = 0; j <  searchedBlocksRing * 2 + 1; j++) {
+                    BlockPos _pos = new BlockPos(player.posx - searchedBlocksRing + j, player.posy, player.posz - searchedBlocksRing);
+                }
+                //BlockPos pos = new BlockPos(player.posx, player.posy, player.posz - searchedBlocksRing);
 
 
-        int searchedRings = 2;
-        int searched = 0;
 
-        double searchedTarget = Math.pow(2 * (searchedRings + 1) - 1, 2);
+            }
 
-        while(searched < searchedTarget){
-            int x = coords[0] - 1;
-            int z = coords[2] -1;
+        } while(targetFound == false);
+        KeyBinding.setKeyBindState(mc.gameSettings.keyBindForward.getKeyCode(), true);
+        }
+    }
+    public static int[] loop(int px, int py, int pz, String targetBlock){
+        int[] coords = {px, py, pz};
+        int searchedRings = 0;
+        while(searchedRings != 3){
+
+            searchedRings++;
+            System.out.println("--------Starting-------\n"+ " Rings to search: " + searchedRings);
+            int searched = 0;
+            double searchedTarget = Math.pow(2 * (searchedRings + 1) - 1, 2) - Math.pow(2 * (searchedRings) - 1, 2);
+            int x = px - searchedRings;
+            int z = pz - searchedRings;
             coords[0] = x;
             coords[2] = z;
+            System.out.println("Blocks to be searched: " + searchedTarget);
             System.out.println(coords[0] + " " +  coords[1] + " " +  coords[2]);
-            System.out.println(searched + " " + searchedTarget);
+
             for(int i = 0; i < searchedRings * 2; i++){
                 searched++;
                 x++;
@@ -72,24 +85,11 @@ public class mineWoodMacro {
                 coords[0] = x;
                 coords[2] = z;
                 System.out.println(coords[0] + " " +  coords[1] + " " +  coords[2]);
-            }
-        }
-    }
-}
-             */
-            //int seatchedBlocksCounterTarget = Math.pow(searchedBlocksCounterIncrement, 2) - Math.pow(searchedBlocksCounterIncrement - 2, 2);
-            for(int i = 1; i <= searchedBlocksCounterTarget; i++) {
-                for(int j = 0; j <  searchedBlocksRing * 2 + 1; j++) {
-                    BlockPos _pos = new BlockPos(player.posx - searchedBlocksRing + j, player.posy, player.posz - searchedBlocksRing);
-                }
-                //BlockPos pos = new BlockPos(player.posx, player.posy, player.posz - searchedBlocksRing);
-
-
 
             }
-
-        } while(targetFound == false);
-        KeyBinding.setKeyBindState(mc.gameSettings.keyBindForward.getKeyCode(), true);
+            System.out.println("-------------Done-------------");
         }
+
+        return coords;
     }
 }
