@@ -19,9 +19,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
         version = "0.0.1-beta" )
 public class Nebula { // select ExampleMod and hit shift+F6 to rename it
 
-    public static final String MODID = "examplemod";      // the id of your mod, it should never change, it is used by forge and servers to identify your mods
-    public static final String MODNAME = "examplemodname";// the name of your mod
-    public static final String VERSION = "1.0";           // the current version of your mod
+    public static final String MODID = "Nebula";      // the id of your mod, it should never change, it is used by forge and servers to identify your mods
+    public static final String MODNAME = "Nebula";// the name of your mod
+    public static final String VERSION = "0.0.1-beta";           // the current version of your mod
 
     // this method is one entry point of you mod
     // it is called by forge when minecraft is starting
@@ -46,7 +46,7 @@ public class Nebula { // select ExampleMod and hit shift+F6 to rename it
         MinecraftForge.EVENT_BUS.register(new ExampleKeybindListener());
         MinecraftForge.EVENT_BUS.register(new ExampleHUD());
         MinecraftForge.EVENT_BUS.register(new TickHandler());
-        MinecraftForge.EVENT_BUS.register(new mineWoodMacro());
+        // MinecraftForge.EVENT_BUS.register(new mineWoodMacro());
 
         if (Loader.isModLoaded("patcher")) {
             // this code will only run if the mod with id "patcher" is loaded
