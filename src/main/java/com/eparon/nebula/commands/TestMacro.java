@@ -1,5 +1,5 @@
 package com.eparon.nebula.commands;
-
+import com.eparon.nebula.macros.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 
@@ -38,9 +38,17 @@ public class TestMacro extends CommandBase {
             sender.addChatMessage(new ChatComponentText("running macro"));
             isMacroing = true;
         }
+        if (args.length > 0 && args[0].equalsIgnoreCase("run")) {
+            sender.addChatMessage(new ChatComponentText("running macro"));
+            isMacroing = true;
+        }
         if (args.length > 0 && args[0].equalsIgnoreCase("stop")) {
             sender.addChatMessage(new ChatComponentText("stopping macro"));
             isMacroing = false;
+        }
+        if (args.length > 0 && args[0].equalsIgnoreCase("runWood")) {
+            sender.addChatMessage(new ChatComponentText("starting wood mining macro"));
+            mineWoodMacro.WoodMacroMain();
         }
     }
 

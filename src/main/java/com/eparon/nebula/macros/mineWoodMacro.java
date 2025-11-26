@@ -16,30 +16,44 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.block.Block;
 import net.minecraft.util.BlockPos;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.World;
+import net.minecraft.client.entity.EntityPlayerSP;
 // 8,
 public class mineWoodMacro {
-    final EntityPlayerSP player = mc.thePlayer;
+    final Minecraft mcStatic = Minecraft.getMinecraft();
+    final EntityPlayerSP playerStatic = mcStatic.thePlayer;
     MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-    WorldServer world = server.worldServers[0];
 
-    boolean targetFound = false;
+
+
     public static void WoodMacroMain() {
-        final Minecraft mc = Minecraft.getMinecraft();
-        BlockPos targetBlockToBreak = new BlockPos();
-        BlockPos targetBlockToBreak = loop(player.posx, player.posy, player.posz, "minecraft:cobblestone");
-        do{
 
+        mineWoodMacro mineWoodMacro = new mineWoodMacro();
+        final Minecraft mc = mineWoodMacro.mcStatic;
+        final EntityPlayerSP player = mineWoodMacro.playerStatic;
 
-        } while(targetFound == false);
-        KeyBinding.setKeyBindState(mc.gameSettings.keyBindForward.getKeyCode(), true);
+        World world = mc.theWorld;
+        boolean targetFound = false;
+
+        BlockPos targetBlockToBreak;
+        //do{
+        targetBlockToBreak = loop(player.posX, player.posY, player.posZ, "minecraft:cobblestone");
+            //KeyBinding.setKeyBindState(mc.gameSettings.keyBindForward.getKeyCode(), true);
+
+        //} while(targetFound == false);
 
     }
     public static BlockPos loop(double px, double py, double pz, String targetBlockName){
-        Block targetBlock = new Block();
-        targetBlock = Block.getBlockFromName(targetBlockName);
+        mineWoodMacro mineWoodMacro = new mineWoodMacro();
+        final Minecraft mc = mineWoodMacro.mcStatic;
+        final EntityPlayerSP player = mineWoodMacro.playerStatic;
+        World world = mc.theWorld;
+
+        Block targetBlock = Block.getBlockFromName(targetBlockName);
         double[] coords = {px, py, pz};
         int searchedRings = 0;
 
@@ -49,8 +63,8 @@ public class mineWoodMacro {
             player.addChatMessage(new ChatComponentText("Starting -- Rings to search: " + searchedRings));
             int searched = 0;
             double searchedTarget = Math.pow(2 * (searchedRings + 1) - 1, 2) - Math.pow(2 * (searchedRings) - 1, 2);
-            int x = px - searchedRings;
-            int z = pz - searchedRings;
+            double x = px - searchedRings;
+            double z = pz - searchedRings;
             coords[0] = x;
             coords[2] = z;
             player.addChatMessage(new ChatComponentText("Blocks to be searched: " + searchedTarget));
@@ -66,6 +80,7 @@ public class mineWoodMacro {
                 IBlockState blockState = world.getBlockState(_pos);
                 Block _block = blockState.getBlock();
                 if(_block == targetBlock) {
+                    player.addChatMessage(new ChatComponentText("DONE! found block at: " + _pos));
                     return _pos;
                 }
             }
@@ -80,7 +95,9 @@ public class mineWoodMacro {
                 IBlockState blockState = world.getBlockState(_pos);
                 Block _block = blockState.getBlock();
                 if(_block == targetBlock) {
+                    player.addChatMessage(new ChatComponentText("DONE! found block at: " + _pos));
                     return _pos;
+
                 }
             }
             for(int i = 0; i < searchedRings * 2; i++){
@@ -93,7 +110,9 @@ public class mineWoodMacro {
                 IBlockState blockState = world.getBlockState(_pos);
                 Block _block = blockState.getBlock();
                 if(_block == targetBlock) {
+                    player.addChatMessage(new ChatComponentText("DONE! found block at: " + _pos));
                     return _pos;
+
                 }
             }
             for(int i = 0; i < searchedRings * 2; i++){
@@ -106,11 +125,13 @@ public class mineWoodMacro {
                 IBlockState blockState = world.getBlockState(_pos);
                 Block _block = blockState.getBlock();
                 if(_block == targetBlock) {
+                    player.addChatMessage(new ChatComponentText("DONE! found block at: " + _pos));
                     return _pos;
+
                 }
 
             }
-            player.addChatMessage(new ChatComponentText(("---------------Done-------------"));
+            player.addChatMessage(new ChatComponentText("---------------Done-------------"));
         }
         BlockPos notFound = new BlockPos(px, py, pz);
         player.addChatMessage(new ChatComponentText("Block not found, returning player's position"));
